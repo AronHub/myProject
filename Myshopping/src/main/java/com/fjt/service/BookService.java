@@ -6,5 +6,7 @@ import com.fjt.pojo.Book;
 
 public interface BookService {
 
-  List<Book> findAll();
+	List<Book> findAll();
+
+	Book findById(Long id);
 }

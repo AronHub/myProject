@@ -52,7 +52,7 @@
 				</tr>
 				<tr>
 					<td height="33" valign="top">
-					<a href="ShowGoodsServlet?type=showDetail&goodsId=<%=book.getId() %>"><%=book.getName()%></a>	
+					<a href="showBookDetail?BookId=<%=book.getId()%>"><%=book.getName()%></a>	
 					</td>
 				</tr>
 				<tr>

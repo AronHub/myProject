@@ -10,15 +10,21 @@ import com.fjt.repository.BookRepo;
 import com.fjt.service.BookService;
 
 @Service
-public class BookServiceImpl implements BookService{
+public class BookServiceImpl implements BookService {
 
 	@Autowired
 	private BookRepo bookRepo;
-	
+
 	@Override
 	public List<Book> findAll() {
 		// TODO Auto-generated method stub
 		return bookRepo.findAll();
+	}
+
+	@Override
+	public Book findById(Long id) {
+		// TODO Auto-generated method stub
+		return bookRepo.findById(id);
 	}
 
 }

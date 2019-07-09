@@ -24,6 +24,7 @@ public class Book implements Serializable {
 	private Long nums;
 	private String photo;
 	private String info;
+	private int amount;
 
 	@Id
 	@GeneratedValue(generator = "seq_book", strategy = GenerationType.SEQUENCE)
@@ -90,6 +91,14 @@ public class Book implements Serializable {
 
 	public void setInfo(String info) {
 		this.info = info;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 
 }
