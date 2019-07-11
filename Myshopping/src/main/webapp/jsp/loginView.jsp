@@ -18,8 +18,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="This is my page">
 	
 	<link rel="stylesheet" type="text/css" href="css/my.css">
-	
-
+	<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    	$(".regeist").click(function(){
+    		window.open("/Myshopping/register","_self");
+        })
+    });
+        
+    </script>
   </head>
   
   <body topmargin="0" background="images/myBack.jpg">
@@ -55,17 +62,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </tr>
           <tr>
             <td align="right"><input type="submit" name="Submit" value="用户登录" /></td>
-            <td align="left"><input type="button" name="Submit2" value="用户注册" /></td>
-            <td align="left"><input type="reset" name="Submit3" value="重置" /></td>
+            <td align="left"><input class="regeist" type="button" name="Submit2" value="用户注册" />
+            <input type="reset" name="Submit3" value="重置" />
+            </td>
+            
           </tr>
         </table> 
-        </form>
+        
         </td>
       </tr>
       <tr>
         <td width="50%" align="right"><img src="images/cartnext.gif" width="87" height="19" /></td>
       </tr>
-    </table></td>
+    </table>
+    </form>
+    </td>
   </tr>
   <tr>
     <td align="center">

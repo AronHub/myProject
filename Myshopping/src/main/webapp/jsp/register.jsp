@@ -19,7 +19,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<link rel="stylesheet" type="text/css" href="css/my.css">
 	
-
+	<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="js/regeist.js"></script>
+     
   </head>
   
   <body topmargin="0" background="images/myBack.jpg" >
@@ -31,22 +33,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </tr>
   <tr>
     <td height="68" align="center">
-    <table width="50%" border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#339900" class="com">
+    <table  width="50%" border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#339900" class="com">
   <tr>
-    <td height="25" colspan="2" align="center" bgcolor="#FFFF66">用户登录</td>
+    <td height="25" colspan="2" align="center" bgcolor="#FFFF66">用户注册</td>
   </tr>
   <tr>
     <td width="36%" height="29" align="right">用户名:</td>
-    <td width="64%" align="center"><input type="text" name="textfield" /></td>
+    <td width="64%" align="center"><input type="text" name="userName" /></td>
   </tr>
   <tr>
     <td height="28" align="right">密&nbsp;&nbsp;码:</td>
-    <td align="center"><input type="text" name="textfield2" /></td>
+    <td align="center"><input type="text" name="passwd" /></td>
+  </tr>
+    <tr>
+    <td width="36%" height="29" align="right">邮箱:</td>
+    <td width="64%" align="center"><input type="text" name="email" /></td>
+  </tr>
+    <tr>
+    <td width="36%" height="29" align="right">电话:</td>
+    <td width="64%" align="center"><input type="text" name="tel" /></td>
   </tr>
   <tr>
-    <td height="34" colspan="2" align="center"><input name="Submit" type="submit" value="登 录" />
-       &nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="submit" name="Submit2" value="注 册" /></td>
+    <td height="34" colspan="2" align="center">
+    <input id="userRegist" type="submit" name="Submit2" value="注 册" />
+    </td>
   </tr>
 </table>
     </td>

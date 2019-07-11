@@ -7,15 +7,21 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fjt.pojo.Book;
+import com.fjt.pojo.Users;
 import com.fjt.service.BookService;
+import com.fjt.service.UserService;
 
 @Controller
 public class MainCtrl {
 	@Autowired
 	private BookService bookService;
+
+	@Autowired
+	private UserService userService;
 
 	/**
 	 * 
@@ -49,6 +55,31 @@ public class MainCtrl {
 		String view = "register";
 		ModelAndView model = new ModelAndView(view);
 		return model;
+	}
+
+	/**
+	 * 
+	     * @Title: userRegesit
+	     * @Description: TODO(这里用一句话描述这个方法的作用)
+	     * @param @return 参数
+	     * @return ModelAndView 返回类型
+	     * @throws
+	 */
+	@RequestMapping("/userRegesit")
+	@ResponseBody
+	public String userRegesit(HttpServletRequest request) {
+		String userName = request.getParameter("userName");
+		String passwd = request.getParameter("passwd");
+		String email = request.getParameter("email");
+		String tel = request.getParameter("tel");
+		Users user = new Users();
+		user.setEmail(email);
+		user.setName(userName);
+		user.setPasswd(passwd);
+		user.setTel(tel);
+		user.setGrade(1);
+		userService.save(user);
+		return "success";
 	}
 
 	/**
