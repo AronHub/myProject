@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </tr>
       <tr>
         <td align="center" class="com">1</td>
-        <td align="center" class="com"><a href="Untitled-1.html">笑傲江湖</a></td>
+        <td align="center" class="com"><a href="Untitled-1.html">笑傲江湖1</a></td>
         <td align="center" class="com">120</td>
       </tr>
       <tr>
