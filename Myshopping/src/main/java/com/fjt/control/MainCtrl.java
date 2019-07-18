@@ -59,7 +59,7 @@ public class MainCtrl {
 
 	/**
 	 * 
-	     * @Title: userRegesit
+	     * @Title: 注册功能
 	     * @Description: TODO(这里用一句话描述这个方法的作用)
 	     * @param @return 参数
 	     * @return ModelAndView 返回类型

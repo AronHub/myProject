@@ -40,6 +40,7 @@ public class MyCart {
 
 	//清空购物车
 	public void clearBook() {
+		System.out.println(hm.toString());
 		hm.clear();
 	}
 

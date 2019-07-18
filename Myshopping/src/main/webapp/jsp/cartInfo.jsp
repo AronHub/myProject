@@ -20,8 +20,10 @@ ArrayList al=(ArrayList)request.getAttribute("shoppInfo");
 	<meta http-equiv="description" content="This is my page">
 	
 	<link rel="stylesheet" type="text/css" href="css/my.css">
-	
+	<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="js/cartInfo.js"></script>
 
+     
   </head>
   
   <body topmargin="0"  background="images/myBack.jpg">
@@ -39,7 +41,7 @@ ArrayList al=(ArrayList)request.getAttribute("shoppInfo");
   </tr>
   <tr>
     <td align="center">
-    <form action="???">
+    <form action="###">
 	<table width="100%"  border="1" cellpadding="0" cellspacing="0" class="com">
       <tr>
         <td  width="20%" align="center">编号</td>
@@ -59,10 +61,10 @@ ArrayList al=(ArrayList)request.getAttribute("shoppInfo");
       		%>
       		<tr>
 	        <td align="center">1</td>
-	        <td align="center"><a href="view.jsp?isbn=711121382"><%=book.getName() %></a></td>
+	        <td align="center"><a href="#"><%=book.getName() %></a></td>
 	        <td align="center">￥<%=book.getPrice() %> </td>
 	        <td width="10%"><input name="textfield" type="text" size="6" value="<%=book.getAmount() %>" /></td>
-	        <td width="10%" align="center"><a href="#">删除</a></td>
+	        <td width="10%" align="center"><a href="/Myshopping/MyCartDelet?id=<%=book.getId() %>">删除</a></td>
 	        <td width="7%" align="center"><a href="#">查看</a></td>
      		</tr>
 	  		<tr><td colspan="6" bgcolor="#CCCCCC" height="5"></td></tr>
@@ -73,8 +75,8 @@ ArrayList al=(ArrayList)request.getAttribute("shoppInfo");
       
       <tr>
         <td>&nbsp;</td>
-        <td align="center"><input type="submit" name="Submit" value="删除全部书籍" /></td>
-        <td align="center"><input name="Submit2" type="submit" value="修 改 数 量" /></td>
+        <td align="center"><input type="button" id="deltAll" name="Submit" value="删除全部书籍" /></td>
+        <td align="center"><input name="Submit2" id="updtaCount" type="button" value="修 改 数 量" /></td>
         <td colspan="3">&nbsp;</td>
       </tr>
     </table>
@@ -97,6 +99,22 @@ ArrayList al=(ArrayList)request.getAttribute("shoppInfo");
     <jsp:include flush="true" page="foot.jsp"></jsp:include>
     </td>
   </tr>
+  
+
 </table>
+<%--幕布 --%>
+<%--幕布位置一定要在删除视图前面，不然删除视图会隐藏在里面 --%>
+<div class="mubu"> </div>
+ 
+<!--删除所有视图-->
+<div class="deleAllView">
+<div class="delteAl">
+<span>确定删除所有信息吗？</span><br/>	
+<input type="button" value="确定" class="delAll_sure">
+<input type="button" value="取消" class="delAll_canl">
+</div>
+</div>
+
+
   </body>
 </html>

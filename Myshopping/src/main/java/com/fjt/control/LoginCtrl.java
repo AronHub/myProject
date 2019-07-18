@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fjt.pojo.Book;
+import com.fjt.pojo.Users;
 import com.fjt.service.BookService;
 import com.fjt.service.MyCart;
 import com.fjt.service.UserService;
@@ -35,14 +36,17 @@ public class LoginCtrl {
 	public ModelAndView checkUser(HttpServletRequest request) {
 		String userName = request.getParameter("username");
 		String passwd = request.getParameter("passwd");
-		boolean flag = userService.findUser(userName, passwd);
+		Users user = userService.findUser(userName, passwd);
 		String view = "";
 		ModelAndView modelAndView = new ModelAndView();
 
-		if (flag) {
+		if (user != null) {
 			//创建购物车，并且存放到session
 			MyCart cart = new MyCart();
 			request.getSession().setAttribute("myCart", cart);
+
+			//存放用户信息到session中
+			request.getSession().setAttribute("loginUser", user);
 
 			// 用户存在，跳转到购物大厅(主页)
 			view = "index";

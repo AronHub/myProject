@@ -14,13 +14,11 @@ public class UserServiceImpl implements UserService {
 	private UserRepo userRepo;
 
 	@Override
-	public boolean findUser(String userName, String passwd) {
+	public Users findUser(String userName, String passwd) {
 		// TODO Auto-generated method stub
 		Users user = userRepo.findUser(userName, passwd);
-		if (user != null) {
-			return true;
-		}
-		return false;
+
+		return user;
 	}
 
 	@Override
