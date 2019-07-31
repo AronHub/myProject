@@ -52,7 +52,7 @@ public class Book implements Serializable {
 		this.autor = autor;
 	}
 
-	@Column(name = "publishHousr")
+	@Column(name = "publish_Housr")
 	public String getPublishHousr() {
 		return publishHousr;
 	}

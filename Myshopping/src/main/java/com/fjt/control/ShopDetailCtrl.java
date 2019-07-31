@@ -12,6 +12,8 @@ import com.fjt.pojo.Book;
 import com.fjt.service.BookService;
 import com.fjt.service.MyCart;
 
+import net.sf.json.JSONArray;
+
 //购物车详细控制器
 @Controller
 public class ShopDetailCtrl {
@@ -35,38 +37,11 @@ public class ShopDetailCtrl {
 		MyCart cart = (MyCart) request.getSession().getAttribute("myCart");
 		if (cart != null) {
 			cart.addBook(bookId, book);
-
-			String view = "cartInfo";
+			//为了防止某个页面刷新，我们可以使用redirect重定向到另外一个控制器。
+			//这样实现可以让浏览器url上的参数不见。如下，可以让?BookId=1不见。
+			//（http://localhost:8080/Myshopping/showBookDetail?BookId=1）
+			String view = "redirect:getMyCart";
 			ModelAndView model = new ModelAndView(view);
-			//准备当前用户的购物车内容
-			request.setAttribute("shoppInfo", cart.showAllMyCart());
-			//返回购物车的总价
-			request.setAttribute("totalPrice", cart.getTotalPrice());
-			return model;
-		}
-		String view = "loginView";
-		ModelAndView model = new ModelAndView(view);
-		return model;
-	}
-
-	/**
-	 * 
-	     * @Title: 显示我的购物车
-	     * @Description: TODO(这里用一句话描述这个方法的作用)
-	     * @param @return 参数
-	     * @return ModelAndView 返回类型
-	     * @throws
-	 */
-	@RequestMapping("/showMyShop")
-	public ModelAndView showMyShop(HttpServletRequest request) {
-		MyCart cart = (MyCart) request.getSession().getAttribute("myCart");
-		if (cart != null) {
-			String view = "cartInfo";
-			ModelAndView model = new ModelAndView(view);
-			//准备当前用户的购物车内容
-			request.setAttribute("shoppInfo", cart.showAllMyCart());
-			//返回购物车的总价
-			request.setAttribute("totalPrice", cart.getTotalPrice());
 			return model;
 		}
 		String view = "loginView";
@@ -89,7 +64,7 @@ public class ShopDetailCtrl {
 		MyCart mycart = (MyCart) request.getSession().getAttribute("myCart");
 		mycart.deltBook(id);
 		//跳转到购物车界面
-		return "forward:/showMyShop";
+		return "forward:/getMyCart";
 	}
 
 	/**
@@ -111,7 +86,7 @@ public class ShopDetailCtrl {
 
 	/**
 	 * 
-	     * @Title: 删除所有后，重新获取数据
+	     * @Title: 删除所有后，重新获取购物车数据
 	     * @Description: TODO(这里用一句话描述这个方法的作用)
 	     * @param @param request
 	     * @param @return 参数
@@ -132,6 +107,26 @@ public class ShopDetailCtrl {
 
 	}
 
-	//更新
+	/**
+	 * 更新
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/updatMyCart")
+	@ResponseBody
+	public String updatMyCart(HttpServletRequest request) {
+		String acount = request.getParameter("acounts");
+		String bookIds = request.getParameter("bookIds");
+		JSONArray ArrayAcount = JSONArray.fromObject(acount);
+		JSONArray ArrayId = JSONArray.fromObject(bookIds);
+		MyCart myCart = (MyCart) request.getSession().getAttribute("myCart");
+
+		for (int i = 0; i < ArrayAcount.size(); i++) {
+			myCart.updateBook(ArrayId.getString(i), ArrayAcount.getString(i));
+		}
+
+		return "success";
+
+	}
 
 }

@@ -35,7 +35,9 @@ public class MyCart {
 
 	//更新书（对于购物车更新...）
 	public void updateBook(String id, String nums) {
-
+        Book book=hm.get(id);
+        book.setAmount(Integer.parseInt(nums));
+		
 	}
 
 	//清空购物车
@@ -66,10 +68,10 @@ public class MyCart {
 	     * @return float 返回类型
 	     * @throws
 	 */
-	public float getTotalPrice() {
+	public double getTotalPrice() {
 		Iterator<String> key = hm.keySet().iterator();
 		float sum = 0.0f;
-		if (key.hasNext()) {
+		while (key.hasNext()) {
 			String id = key.next();
 			Book book = hm.get(id);
 			sum += book.getAmount() * book.getPrice();

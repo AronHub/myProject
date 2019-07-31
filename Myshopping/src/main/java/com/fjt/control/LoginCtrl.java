@@ -15,6 +15,11 @@ import com.fjt.service.BookService;
 import com.fjt.service.MyCart;
 import com.fjt.service.UserService;
 
+/**
+ * 登录控制器
+ * @author pc
+ *
+ */
 @Controller
 public class LoginCtrl {
 	@Autowired
@@ -36,10 +41,9 @@ public class LoginCtrl {
 	public ModelAndView checkUser(HttpServletRequest request) {
 		String userName = request.getParameter("username");
 		String passwd = request.getParameter("passwd");
-		Users user = userService.findUser(userName, passwd);
 		String view = "";
 		ModelAndView modelAndView = new ModelAndView();
-
+		Users user = userService.findUser(userName, passwd);
 		if (user != null) {
 			//创建购物车，并且存放到session
 			MyCart cart = new MyCart();
@@ -48,13 +52,14 @@ public class LoginCtrl {
 			//存放用户信息到session中
 			request.getSession().setAttribute("loginUser", user);
 
-			// 用户存在，跳转到购物大厅(主页)
-			view = "index";
-			modelAndView.setViewName(view);
 			// 准备图书信息
 			List<Book> bookList = bookService.findAll();
 			//把显示的数据放在request中，因为request对象的生命周期短。
 			request.setAttribute("bookList", bookList);
+
+			// 用户存在，跳转到购物大厅(主页)
+			view = "index";
+			modelAndView.setViewName(view);
 			return modelAndView;
 		}
 		// 用户不存在，返回登录页面

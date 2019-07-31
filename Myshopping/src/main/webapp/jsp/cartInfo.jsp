@@ -60,12 +60,16 @@ ArrayList al=(ArrayList)request.getAttribute("shoppInfo");
       		Book book=(Book)al.get(i);
       		%>
       		<tr>
-	        <td align="center">1</td>
+	        <td align="center"><%=i+1%>
+	        <input type="hidden" id="bookID<%=i%>"  name="bookID" value="<%=book.getId()%>" />
+	        <input type="hidden" id="sum" name="sum" value="<%=al.size()%>"/>
+	        </td>
 	        <td align="center"><a href="#"><%=book.getName() %></a></td>
 	        <td align="center">￥<%=book.getPrice() %> </td>
-	        <td width="10%"><input name="textfield" type="text" size="6" value="<%=book.getAmount() %>" /></td>
+	        <td width="10%"><input  id="acount<%=i%>" name="textfield" type="text" size="6" value="<%=book.getAmount() %>" /></td>
 	        <td width="10%" align="center"><a href="/Myshopping/MyCartDelet?id=<%=book.getId() %>">删除</a></td>
 	        <td width="7%" align="center"><a href="#">查看</a></td>
+     		
      		</tr>
 	  		<tr><td colspan="6" bgcolor="#CCCCCC" height="5"></td></tr>
       		<%
@@ -87,7 +91,7 @@ ArrayList al=(ArrayList)request.getAttribute("shoppInfo");
     <td><table width="100%" border="1" cellspacing="0" cellpadding="0" class="com">
       <tr>
         <td width="49%" class="comm">您共选择了价值<span class="STYLE1">${totalPrice}</span>的商品,点<a href="./"> 此处 </a>继续购物。</td>
-        <td width="51%" align="right"><a href="ComShopping" ><img border="0" src="images/cartnext.gif" width="87" height="19" /></a></td>
+        <td width="51%" align="right"><a href="/Myshopping/goMyOrderView" ><button>结算</button></a></td>
       </tr>
     </table></td>
   </tr>
