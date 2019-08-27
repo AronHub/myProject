@@ -1,5 +1,9 @@
-1.这是一个spring+springmvc+hibernate的项目
+1.这是一个spring+springmvc+hibernate+oracle的项目
 2.项目使用jdk1.7
 3.这是一个购物车网站
 4.使用到了javamail技术（需要研究）
+5.使用了servlet，jsp相关技术，其中使用cookie,session实现显示上次登录时间，显示当前用户，以及实现验证码校验。
+使用servletContext实现了网站计数器，计算网页访问人数。
 
+6.使用了MD5加密登录用户的密码。
+7.使用到了登录验证码校验。（使用到了session技术）

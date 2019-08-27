@@ -60,6 +60,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td align="right">密码:</td>
             <td align="left"><input name="passwd" type="password" class="comm" /></td>
           </tr>
+          
+          <!-- 下面是验证码 -->
+          <tr>
+            <td>
+                <div class="col-sm-4 control-label" align="right">
+					<label id="password-lbl" for="password" class="required">验证码 ：</label>
+				</div>
+		    </td>
+				
+			<td>
+					<!-- 验证码文本框 -->
+					<input type="text" name="checkCode" id="checkCode" value=""
+											class="validate-password required" style="float: left; height: 50px; "
+											title="验证码区分大小写" size="14"  maxlength="4" 
+											 /> 
+					<!-- 显示验证码 -->
+					<img src="/Myshopping/CheckCodes" name="checkCode" onClick="myReload()" width="116"
+							height="43" class="img_checkcode" id="img_checkCode" />
+			</td>
+			
+          </tr>
+          <!-- 上面是验证码 -->
+          
           <tr>
             <td align="right"><input type="submit" name="Submit" value="用户登录" /></td>
             <td align="left"><input class="regeist" type="button" name="Submit2" value="用户注册" />
@@ -84,5 +107,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </td>
   </tr>
 </table>
+
+    <script language="javascript">
+		//刷新验证码
+		function myReload() {
+			document.getElementById("img_checkCode").src = document.getElementById("img_checkCode").src + "?nocache=" + new Date().getTime();
+		}
+	</script>
   </body>
 </html>
