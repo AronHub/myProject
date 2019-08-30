@@ -64,6 +64,7 @@ public class LoginCtrl {
 	 */
 	@RequestMapping("/checkUser")
 	public String checkUser(HttpServletRequest request) {
+
 		String userName = request.getParameter("username");
 		String passwd = request.getParameter("passwd");
 		String checkCode = request.getParameter("checkCode");// 获取验证码

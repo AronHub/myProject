@@ -95,10 +95,6 @@
     	<servlet-name>CheckCodes</servlet-name>
     	<url-pattern>/CheckCodes</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-    	<servlet-name>InitServlet</servlet-name>
-    	<url-pattern>/InitServlet</url-pattern>
-    </servlet-mapping>
    
     
      <!--加载Spring的配置文件到上下文中去-->
