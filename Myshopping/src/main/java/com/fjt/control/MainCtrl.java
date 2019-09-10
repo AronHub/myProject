@@ -160,17 +160,24 @@ public class MainCtrl {
 	public String userRegesit(HttpServletRequest request) {
 		String userName = request.getParameter("userName");
 		String passwd = request.getParameter("passwd");
-		//密码用md5加密
-		passwd = Md5Tool.MD5(passwd);
-		String email = request.getParameter("email");
-		String tel = request.getParameter("tel");
-		Users user = new Users();
-		user.setEmail(email);
-		user.setName(userName);
-		user.setPasswd(passwd);
-		user.setTel(tel);
-		user.setGrade(1);
-		userService.save(user);
+		try {
+			//密码用md5加密
+			passwd = Md5Tool.MD5(passwd);
+			String email = request.getParameter("email");
+			String tel = request.getParameter("tel");
+			Users user = new Users();
+			user.setEmail(email);
+			user.setName(userName);
+			user.setPasswd(passwd);
+			user.setTel(tel);
+			user.setGrade(1);
+			userService.save(user);
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.error("新增出错!", e.getMessage());
+			return "error";
+		}
+
 		return "success";
 	}
 

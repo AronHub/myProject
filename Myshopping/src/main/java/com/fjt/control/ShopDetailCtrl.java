@@ -2,6 +2,8 @@ package com.fjt.control;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,8 @@ import net.sf.json.JSONArray;
 //购物车详细控制器
 @Controller
 public class ShopDetailCtrl {
+	private Logger logger = LoggerFactory.getLogger(MainCtrl.class);
+
 	@Autowired
 	private BookService bookService;
 
@@ -79,8 +83,16 @@ public class ShopDetailCtrl {
 	@RequestMapping("/MyCartDeletAll")
 	@ResponseBody
 	public String MyCartDeletAll(HttpServletRequest request) {
-		MyCart myCart = (MyCart) request.getSession().getAttribute("myCart");
-		myCart.clearBook();
+		try {
+			MyCart myCart = (MyCart) request.getSession()
+					.getAttribute("myCart");
+			myCart.clearBook();
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.error("删除所有失败!", e.getMessage());
+			return "error";
+		}
+
 		return "success";
 	}
 
@@ -117,12 +129,22 @@ public class ShopDetailCtrl {
 	public String updatMyCart(HttpServletRequest request) {
 		String acount = request.getParameter("acounts");
 		String bookIds = request.getParameter("bookIds");
-		JSONArray ArrayAcount = JSONArray.fromObject(acount);
-		JSONArray ArrayId = JSONArray.fromObject(bookIds);
-		MyCart myCart = (MyCart) request.getSession().getAttribute("myCart");
 
-		for (int i = 0; i < ArrayAcount.size(); i++) {
-			myCart.updateBook(ArrayId.getString(i), ArrayAcount.getString(i));
+		try {
+			JSONArray ArrayAcount = JSONArray.fromObject(acount);
+			JSONArray ArrayId = JSONArray.fromObject(bookIds);
+			MyCart myCart = (MyCart) request.getSession()
+					.getAttribute("myCart");
+
+			for (int i = 0; i < ArrayAcount.size(); i++) {
+				myCart.updateBook(ArrayId.getString(i),
+						ArrayAcount.getString(i));
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.error("更新出错!", e.getMessage());
+			return "error";
 		}
 
 		return "success";
