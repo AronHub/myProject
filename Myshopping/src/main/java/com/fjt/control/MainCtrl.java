@@ -99,7 +99,7 @@ public class MainCtrl {
 				//把jsesseionid存放在cookie中，实现浏览器关闭还能访问之前的session
 				Cookie SessionCookie = new Cookie("JSESSIONID",
 						session.getId());
-				SessionCookie.setMaxAge(3600 * 24 * 2 * 7);//存放30min
+				SessionCookie.setMaxAge(3600 * 24 * 2 * 7);//存放两周
 				response.addCookie(SessionCookie);
 
 			}
